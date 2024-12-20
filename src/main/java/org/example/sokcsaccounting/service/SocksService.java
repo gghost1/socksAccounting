@@ -3,14 +3,13 @@ package org.example.sokcsaccounting.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.example.sokcsaccounting.dto.*;
 import org.example.sokcsaccounting.data.Socks;
+import org.example.sokcsaccounting.dto.*;
 import org.example.sokcsaccounting.exception.IllegalOperationException;
 import org.example.sokcsaccounting.exception.ParseFileException;
 import org.example.sokcsaccounting.repository.SockRepository;
@@ -21,9 +20,13 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-
-import java.io.*;
-import java.util.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.util.Iterator;
+import java.util.Objects;
+import java.util.Optional;
 
 @Slf4j
 @Service
