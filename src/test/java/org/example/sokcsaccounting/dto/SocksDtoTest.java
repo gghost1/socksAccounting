@@ -1,6 +1,5 @@
 package org.example.sokcsaccounting.dto;
 
-import org.example.sokcsaccounting.data.Socks;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
