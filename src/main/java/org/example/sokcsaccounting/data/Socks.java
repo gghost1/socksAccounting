@@ -12,6 +12,7 @@ import java.util.UUID;
 public class Socks {
 
     @Id
+    @GeneratedValue
     private UUID id;
     @Column(nullable = false, updatable = false)
     private String color;
@@ -32,13 +33,6 @@ public class Socks {
     }
 
     public Socks() {
-    }
-
-    @PrePersist
-    private void prePersist() {
-        if (this.id == null) {
-            this.id = UUID.randomUUID();
-        }
     }
 
     public Socks increaseQuantity(int quantity) {
