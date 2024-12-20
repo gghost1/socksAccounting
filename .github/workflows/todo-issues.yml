@@ -26,5 +26,11 @@ jobs:
           restore-keys: |
             gradle-${{ runner.os }}-
 
+      - name: Grant execution permissions for Gradle wrapper
+        run: chmod +x ./gradlew
+
       - name: Build and Run Tests
         run: ./gradlew clean build
+
+      - name: Verify Build Artifacts
+        run: ls build/libs
