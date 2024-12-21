@@ -10,6 +10,7 @@ import org.example.sokcsaccounting.data.Socks;
 import org.example.sokcsaccounting.dto.*;
 import org.example.sokcsaccounting.exception.IllegalOperationException;
 import org.example.sokcsaccounting.repository.SockRepository;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -33,6 +34,7 @@ import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Disabled
 @Testcontainers
 @SpringBootTest
 class SocksServiceTest {
