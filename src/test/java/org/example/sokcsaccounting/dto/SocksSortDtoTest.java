@@ -11,7 +11,7 @@ public class SocksSortDtoTest {
 
     @Test
     void creationWithDataTest() {
-        SocksSortDto socksSortDto = SocksSortDto.of("color", "ascend");
+        SocksSortDto socksSortDto = SocksSortDto.of(SocksParameterType.COLOR, OrderType.ASCENDING);
 
         assertEquals(SocksParameterType.COLOR, socksSortDto.parameter());
         assertEquals(OrderType.ASCENDING, socksSortDto.orderType());

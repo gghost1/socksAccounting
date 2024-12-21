@@ -7,7 +7,7 @@ public record SocksSortDto(
     SocksParameterType parameter,
     OrderType orderType
 ) {
-    public static SocksSortDto of(String parameter, String orderType) {
+    public static SocksSortDto of(SocksParameterType parameter, OrderType orderType) {
         if (orderType == null) {
             return new SocksSortDto(
                 null,
@@ -15,8 +15,8 @@ public record SocksSortDto(
             );
         }
         return new SocksSortDto(
-            SocksParameterType.fromString(parameter),
-            OrderType.fromString(orderType)
+            parameter,
+            orderType
         );
     }
 }
