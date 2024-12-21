@@ -9,9 +9,8 @@ public record SocksFilterDto(
     ComparisonOperatorType comparisonOperatorType,
     List<Double> parameter
 ) {
-    public static SocksFilterDto of(String color, String comparisonOperator, List<Double> parameter) {
-        ComparisonOperatorType comparisonOperatorType = ComparisonOperatorType.fromString(comparisonOperator);
-        if (comparisonOperatorType == ComparisonOperatorType.BETWEEN) {
+    public static SocksFilterDto of(String color, ComparisonOperatorType comparisonOperator, List<Double> parameter) {
+        if (comparisonOperator == ComparisonOperatorType.BETWEEN) {
             if (parameter.size() != 2) {
                 throw new IllegalArgumentException("Invalid count of parameters");
             }
@@ -22,7 +21,7 @@ public record SocksFilterDto(
         }
         return new SocksFilterDto(
                 color,
-                comparisonOperatorType,
+                comparisonOperator,
                 parameter
         );
     }

@@ -14,7 +14,7 @@ public class SocksFilterDtoTest {
     void creationTest() {
         SocksFilterDto socksFilterDto = SocksFilterDto.of(
                 "red",
-                "between",
+                ComparisonOperatorType.BETWEEN,
                 List.of(1.0, 2.0)
         );
         assertEquals("red", socksFilterDto.color());

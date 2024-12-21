@@ -7,6 +7,9 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.example.sokcsaccounting.data.Socks;
+import org.example.sokcsaccounting.data.type.ComparisonOperatorType;
+import org.example.sokcsaccounting.data.type.OrderType;
+import org.example.sokcsaccounting.data.type.SocksParameterType;
 import org.example.sokcsaccounting.dto.*;
 import org.example.sokcsaccounting.exception.IllegalOperationException;
 import org.example.sokcsaccounting.repository.SockRepository;
@@ -138,7 +141,7 @@ class SocksServiceTest {
         socksService.income(new SocksEditDto("white", 35.0, 5));
         socksService.income(new SocksEditDto("white", 75.0, 5));
 
-        SocksFilterDto socksFilterDto = SocksFilterDto.of("white", "EQUAL", List.of(35.0));
+        SocksFilterDto socksFilterDto = SocksFilterDto.of("white", ComparisonOperatorType.EQUAL, List.of(35.0));
         SocksSortDto socksSortDto = SocksSortDto.of(null, null);
         PaginationDto paginationDto = new PaginationDto(0, 10);
 
@@ -149,7 +152,7 @@ class SocksServiceTest {
         assertEquals("white", socks.socks().get(0).getColor());
         assertEquals(35.0, socks.socks().get(0).getCottonPart());
 
-        socksFilterDto = SocksFilterDto.of("white", "lessThan", List.of(41.0));
+        socksFilterDto = SocksFilterDto.of("white", ComparisonOperatorType.LESS, List.of(41.0));
         socks = socksService.getAll(socksFilterDto, socksSortDto, paginationDto);
 
         assertEquals(2, socks.socks().size());
@@ -159,7 +162,7 @@ class SocksServiceTest {
         assertEquals("white", socks.socks().get(1).getColor());
         assertEquals(35.0, socks.socks().get(1).getCottonPart());
 
-        socksFilterDto = SocksFilterDto.of("white", "moreThan", List.of(39.0));
+        socksFilterDto = SocksFilterDto.of("white", ComparisonOperatorType.GREATER, List.of(39.0));
         socks = socksService.getAll(socksFilterDto, socksSortDto, paginationDto);
 
         assertEquals(2, socks.socks().size());
@@ -169,7 +172,7 @@ class SocksServiceTest {
         assertEquals("white", socks.socks().get(1).getColor());
         assertEquals(75.0, socks.socks().get(1).getCottonPart());
 
-        socksFilterDto = SocksFilterDto.of("white", "between", List.of(35.0, 75.0));
+        socksFilterDto = SocksFilterDto.of("white", ComparisonOperatorType.BETWEEN, List.of(35.0, 75.0));
         socks = socksService.getAll(socksFilterDto, socksSortDto, paginationDto);
 
         assertEquals(3, socks.socks().size());
@@ -188,8 +191,8 @@ class SocksServiceTest {
         socksService.income(new SocksEditDto("black", 35.0, 8));
         socksService.income(new SocksEditDto("black", 75.0, 5));
 
-        SocksFilterDto socksFilterDto = SocksFilterDto.of("black", "between", List.of(35.0, 75.0));
-        SocksSortDto socksSortDto = SocksSortDto.of("cottonPart", "ascend");
+        SocksFilterDto socksFilterDto = SocksFilterDto.of("black", ComparisonOperatorType.BETWEEN, List.of(35.0, 75.0));
+        SocksSortDto socksSortDto = SocksSortDto.of(SocksParameterType.COTTON_PART, OrderType.ASCENDING);
         PaginationDto paginationDto = new PaginationDto(0, 10);
 
         PaginatedListDto<SocksDto> socks = socksService.getAll(socksFilterDto, socksSortDto, paginationDto);
@@ -203,7 +206,7 @@ class SocksServiceTest {
         assertEquals("black", socks.socks().get(2).getColor());
         assertEquals(75.0, socks.socks().get(2).getCottonPart());
 
-        socksSortDto = SocksSortDto.of("cottonPart", "descend");
+        socksSortDto = SocksSortDto.of(SocksParameterType.COTTON_PART, OrderType.DESCENDING);
         socks = socksService.getAll(socksFilterDto, socksSortDto, paginationDto);
 
         assertEquals(3, socks.socks().size());
@@ -215,7 +218,7 @@ class SocksServiceTest {
         assertEquals("black", socks.socks().get(2).getColor());
         assertEquals(35.0, socks.socks().get(2).getCottonPart());
 
-        socksSortDto = SocksSortDto.of("quantity", "descend");
+        socksSortDto = SocksSortDto.of(SocksParameterType.QUANTITY, OrderType.DESCENDING);
         socks = socksService.getAll(socksFilterDto, socksSortDto, paginationDto);
 
         assertEquals(3, socks.socks().size());

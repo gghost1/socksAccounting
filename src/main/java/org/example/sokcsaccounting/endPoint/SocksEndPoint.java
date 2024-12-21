@@ -1,10 +1,16 @@
 package org.example.sokcsaccounting.endPoint;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.sokcsaccounting.data.type.ComparisonOperatorType;
+import org.example.sokcsaccounting.data.type.OrderType;
+import org.example.sokcsaccounting.data.type.SocksParameterType;
 import org.example.sokcsaccounting.dto.*;
 import org.example.sokcsaccounting.service.SocksService;
 import org.springframework.http.ResponseEntity;
@@ -58,11 +64,11 @@ public class SocksEndPoint {
     @GetMapping("")
     public ResponseEntity<?> getAll(
             @RequestParam String color,
-            @RequestParam String comparisonOperator,
+            @RequestParam ComparisonOperatorType comparisonOperator,
             @RequestParam Double parameter,
             @RequestParam(required = false) Double parameter2,
-            @RequestParam(required = false) String sortParameter,
-            @RequestParam(required = false) String sortType,
+            @RequestParam(required = false) SocksParameterType sortParameter,
+            @RequestParam(required = false) OrderType sortType,
             @RequestParam int page,
             @RequestParam int size
     ) {
